@@ -11,5 +11,6 @@ export function getChatModel() {
   return new ChatOpenAI({
     apiKey: process.env.OPENAI_API_KEY!,
     model: process.env.OPENAI_CHAT_MODEL,
+    streaming: true,
   });
 }
