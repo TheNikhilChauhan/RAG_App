@@ -60,6 +60,7 @@ export default function SourceInput({
       <input
         type="file"
         onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+        className=" cursor-pointer"
       />
       <div className="flex gap-2">
         <button

@@ -1,5 +1,7 @@
 "use client";
+import RagStore from "@/components/RagStore";
 import SourceInput from "@/components/SourceInput";
+import Uploader from "@/components/Uploader";
 
 export default function Page() {
   async function handleSubmit(form: FormData) {
@@ -19,7 +21,9 @@ export default function Page() {
       <div>
         <div>
           <SourceInput onSubmit={handleSubmit} />
+          <Uploader onIndexed={() => window.location.reload()} />
         </div>
+        <RagStore />
       </div>
     </main>
   );
