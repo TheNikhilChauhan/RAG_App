@@ -36,5 +36,5 @@ export async function getRetriver(k = 4): Promise<BaseRetriever> {
 //retrieval krega for top "k"
 export async function retrieveDocs(query: string, k = 4) {
   const retriever = await getRetriver(k);
-  return await retriever.getRelevantDocuments(query);
+  return await retriever.invoke(query);
 }

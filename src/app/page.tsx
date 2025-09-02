@@ -1,4 +1,5 @@
 "use client";
+import Chat from "@/components/Chat";
 import RagStore from "@/components/RagStore";
 import SourceInput from "@/components/SourceInput";
 import Uploader from "@/components/Uploader";
@@ -25,6 +26,7 @@ export default function Page() {
         </div>
         <RagStore />
       </div>
+      <Chat />
     </main>
   );
 }
