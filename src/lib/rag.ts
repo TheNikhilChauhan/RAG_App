@@ -35,6 +35,9 @@ export async function getRetriver(k = 4): Promise<BaseRetriever> {
 
 //retrieval krega for top "k"
 export async function retrieveDocs(query: string, k = 4) {
+  if (!query || typeof query !== "string") {
+    throw new Error("❌ retrieveDocs: query must be a non-empty string");
+  }
   const retriever = await getRetriver(k);
   return await retriever.invoke(query);
 }

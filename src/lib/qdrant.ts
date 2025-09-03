@@ -1,13 +1,16 @@
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { getEmbeddingModel } from "./llm";
 import { QdrantVectorStore } from "@langchain/qdrant";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const QDRANT_URL = process.env.QDRANT_URL || "http://localhost:6333";
 const QDRANT_API_KEY = process.env.QDRANT_API_KEY || undefined;
 export const QDRANT_COLLECTION = process.env.QDRANT_COLLECTION || "rag_chunks";
 
 export const qdrantClient = new QdrantClient({
-  url: QDRANT_URL,
+  url: QDRANT_URL!,
   apiKey: QDRANT_API_KEY,
 });
 

@@ -1,15 +1,22 @@
 import fs from "fs";
+import os from "os";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { Document } from "@langchain/core/documents";
 import { CSVLoader } from "@langchain/community/document_loaders/fs/csv";
 import { CheerioWebBaseLoader } from "@langchain/community/document_loaders/web/cheerio";
+import path from "path";
 
 //text on textarea
-export async function loadText(text: string, source = 'textarea'): Promise<Document[]>{
-    return [new Document({
-        pageContent: text,
-        metadata: {source}
-    })]
+export async function loadText(
+  text: string,
+  source = "textarea"
+): Promise<Document[]> {
+  return [
+    new Document({
+      pageContent: text,
+      metadata: { source },
+    }),
+  ];
 }
 
 //files from upload on browser
@@ -20,7 +27,7 @@ export async function loadFileFromBuffer(
   const ext = name.split(".").pop()?.toLowerCase();
 
   if (ext === "pdf") {
-    const tmp = `/tmp/${Date.now()}-${name}`;
+    const tmp = path.join(os.tmpdir(), `${Date.now()}-${name}`);
     fs.writeFileSync(tmp, buf);
 
     const loader = new PDFLoader(tmp);

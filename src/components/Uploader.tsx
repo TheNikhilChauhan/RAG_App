@@ -6,7 +6,7 @@ export default function Uploader({ onIndexed }: { onIndexed: () => void }) {
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) return;
 
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
     const form = new FormData();
     form.append("file", file);
     try {

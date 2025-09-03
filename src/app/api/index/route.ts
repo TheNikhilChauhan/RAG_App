@@ -1,6 +1,9 @@
 import { loadFileFromBuffer, loadText, loadUrl } from "@/lib/loaders";
 import { indexDocuments } from "@/lib/rag";
+
 import { NextResponse } from "next/server";
+
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
@@ -34,6 +37,8 @@ export async function POST(req: Request) {
       const website = form.get("website") as string | null;
       const file = form.get("file") as any;
 
+      console.log(file);
+
       let docs: any[] = [];
       if (text) docs = await loadText(text, "textarea");
       else if (url) docs = await loadUrl(url);
@@ -41,6 +46,7 @@ export async function POST(req: Request) {
       else if (file) {
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
+
         docs = await loadFileFromBuffer(file.name || "upload", buffer);
       } else {
         return NextResponse.json(
